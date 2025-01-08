@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const OpenEye = ({
+export const OpenEye = ({
   width = 24,
   height = 24,
   fill = "none",
@@ -39,4 +39,4 @@ OpenEye.propTypes = {
   stroke: PropTypes.string,
 };
 
-export default OpenEye;
+// export default OpenEye;

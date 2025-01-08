@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import styled from "styled-components";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { OpenEye, SlashEye } from "../../../assets/icons";
 
 const PasswordLabel = styled.label`
   display: block;
@@ -64,7 +64,7 @@ const PasswordField = ({
         onKeyDown={handleKeyDown}
       />
       <ToggleIcon onClick={togglePasswordVisibility}>
-        {showPassword ? <FaEyeSlash /> : <FaEye />}
+        {showPassword ? <SlashEye /> : <OpenEye />}
       </ToggleIcon>
       {errors[name] && <p style={{ color: "red" }}>{errors[name]?.message}</p>}
     </>

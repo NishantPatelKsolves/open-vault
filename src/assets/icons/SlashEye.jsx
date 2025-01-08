@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const SlashEye = ({
+export const SlashEye = ({
   width = 24,
   height = 24,
   fill = "none",
@@ -67,4 +67,4 @@ SlashEye.propTypes = {
   stroke: PropTypes.string,
 };
 
-export default SlashEye;
+// export default SlashEye;
