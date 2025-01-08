@@ -22,11 +22,21 @@ const Input = styled.input`
 
 const ToggleIcon = styled.div`
   position: absolute;
-  top: 68%;
+  top: 58%;
   right: 1rem;
   transform: translateY(-50%);
   cursor: pointer;
   color: #808080;
+`;
+
+const InputWrapper = styled.div`
+  position: relative;
+`;
+
+const ErrorMessage = styled.p`
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
 `;
 const PasswordField = ({
   name,
@@ -56,17 +66,20 @@ const PasswordField = ({
   return (
     <>
       <PasswordLabel>{label}</PasswordLabel>
-      <Input
-        type={showPassword ? "text" : "password"}
-        placeholder={placeholder}
-        {...register(name)}
-        onChange={onChange}
-        onKeyDown={handleKeyDown}
-      />
-      <ToggleIcon onClick={togglePasswordVisibility}>
-        {showPassword ? <SlashEye /> : <OpenEye />}
-      </ToggleIcon>
-      {errors[name] && <p style={{ color: "red" }}>{errors[name]?.message}</p>}
+      <InputWrapper>
+        <Input
+          type={showPassword ? "text" : "password"}
+          placeholder={placeholder}
+          {...register(name)}
+          onChange={onChange}
+          onKeyDown={handleKeyDown}
+        />
+        <ToggleIcon onClick={togglePasswordVisibility}>
+          {showPassword ? <SlashEye /> : <OpenEye />}
+        </ToggleIcon>
+      </InputWrapper>
+
+      {errors[name] && <ErrorMessage>{errors[name]?.message}</ErrorMessage>}
     </>
   );
 };

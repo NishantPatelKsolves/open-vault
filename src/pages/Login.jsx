@@ -1,12 +1,13 @@
 // import { useState } from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 // import { FaEye, FaEyeSlash } from "react-icons/fa"; // Icon imports
 import { toast } from "react-toastify";
 import InputField from "../components/shared/formFields/InputField";
 import PasswordField from "../components/shared/formFields/PasswordField";
+
+import userLoginSchema from "../utils/UserLoginSchema";
 
 const Container = styled.div`
   display: flex;
@@ -107,37 +108,26 @@ const SubmitButton = styled.button`
   border-radius: 0.5rem;
 `;
 
-const schema = yup.object().shape({
-  email: yup
-    .string()
-    .required("Email is required")
-    .matches(
-      /^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/,
-      "Enter a valid email address"
-    ),
-  password: yup
-    .string()
-    .required("Password is required")
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,15}$/,
-      "Password must be at least 8 characters long and include one upper and one lower case letter, at least one number, and one special character."
-    ),
-});
-
 const Login = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(userLoginSchema),
   });
 
-  console.log("Rendered");
+  // console.log("Rendered");
 
   const onSubmit = (data) => {
     console.log("Form Data:", data.email, data.password);
     toast.success("Logged in successfully");
+    //clear fields after successful logins
+    reset({
+      email: "",
+      password: "",
+    });
   };
 
   return (
