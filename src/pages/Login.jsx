@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import InputField from "../components/shared/formFields/InputField";
 import PasswordField from "../components/shared/formFields/PasswordField";
 
-import userLoginSchema from "../utils/UserLoginSchema";
+import UserLoginSchema from "../utils/UserLoginSchema";
 
 const Container = styled.div`
   display: flex;
@@ -115,7 +115,7 @@ const Login = () => {
     reset,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(userLoginSchema),
+    resolver: yupResolver(UserLoginSchema),
   });
 
   // console.log("Rendered");
@@ -123,7 +123,7 @@ const Login = () => {
   const onSubmit = (data) => {
     console.log("Form Data:", data.email, data.password);
     toast.success("Logged in successfully");
-    //clear fields after successful logins
+    //clear fields after successful login
     reset({
       email: "",
       password: "",
