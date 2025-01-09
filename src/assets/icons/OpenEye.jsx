@@ -38,5 +38,3 @@ OpenEye.propTypes = {
   fill: PropTypes.string,
   stroke: PropTypes.string,
 };
-
-// export default OpenEye;
