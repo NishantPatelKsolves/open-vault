@@ -1,11 +1,10 @@
-// import { useState } from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-// import { FaEye, FaEyeSlash } from "react-icons/fa"; // Icon imports
 import { toast } from "react-toastify";
-import InputField from "../../components/shared/formFields/InputField";
-import PasswordField from "../../components/shared/formFields/PasswordField";
+
+
+import { InputField, PasswordField } from "../../components/shared/formFields/";
 
 import UserLoginSchema from "../../utils/UserLoginSchema";
 import { history } from "../../helper/history";

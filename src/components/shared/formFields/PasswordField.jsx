@@ -94,5 +94,3 @@ PasswordField.propTypes = {
   onChange: PropTypes.func,
   onKeyDown: PropTypes.func,
 };
-
-export default PasswordField;

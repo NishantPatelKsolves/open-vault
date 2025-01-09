@@ -84,10 +84,10 @@ const Accordion = ({
 
 Accordion.propTypes = {
   name: PropTypes.string.isRequired,
-  path: PropTypes.string.isRequired,
+  path: PropTypes.string,
   pages: PropTypes.array.isRequired,
   activePath: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   onSubmenuClick: PropTypes.func.isRequired,
   icon: PropTypes.elementType, // Correct prop type for an icon component
 };

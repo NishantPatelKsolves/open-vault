@@ -15,3 +15,5 @@ export * from "./GeocodingIcon";
 export * from "./FbcMasterIcon";
 export * from "./OpenEye";
 export * from "./SlashEye";
+export * from "./CircleUpArrowIcon";
+export * from "./CircleDownArrowIcon";

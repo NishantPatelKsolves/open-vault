@@ -63,5 +63,3 @@ InputField.propTypes = {
   onChange: PropTypes.func,
   onKeyDown: PropTypes.func,
 };
-
-export default InputField;
