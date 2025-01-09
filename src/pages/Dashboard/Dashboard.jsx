@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { Collapsible } from "../../components/shared/common/";
+import {
+  Collapsible,  CustomTable,
+} from "../../components/shared/common/";
 
 const collapsibleDemoData = [
   {
@@ -32,7 +34,8 @@ export const Dashboard = () => {
             isTableOpen={openIndex === index}
             toggleCollapsible={() => handleToggle(index)}
           >
-            {d.content}
+            {/* {d.content} */}
+            <CustomTable />
           </Collapsible>
         );
       })}
