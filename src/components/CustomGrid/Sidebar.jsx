@@ -15,10 +15,11 @@ export const Container = styled.div`
   align-items: center;
   background-color: "#FFF7ED";
   position: relative;
+  z-index: 100;
   width: 280px;
-  border-right: 1px solid #d6cfcf; /* Added right border */
-  border-top-right-radius: 12px; /* Added top-right radius */
-  border-bottom-right-radius: 12px; /* Added bottom-right radius */
+  border-right: 1px solid #d6cfcf;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
 
   .logo-small {
     display: none;
@@ -66,54 +67,40 @@ export const Item = styled.li`
   padding: 1rem 32px;
   font-size: 16px;
   font-weight: 550;
-  color: ${({ active }) =>
-    active ? "#FFFFFF" : "#444445"}; /* Default color */
-  background-color: ${({ active }) =>
-    active ? "transparent" : "transparent"}; /* Transparent by default */
+  color: ${({ $active }) => ($active ? "#FFFFFF" : "#444445")};
+  background-color: ${({ $active }) =>
+    $active ? "transparent" : "transparent"};
   cursor: pointer;
   gap: 20px;
   border-radius: 8px;
 
   // Create the oval when active
-  ${({ active }) =>
-    active &&
+  ${({ $active }) =>
+    $active &&
     `
-      background-color: #F49200; /* Set the orange color */
-      border-radius: 8px; /* Oval shape */
-      padding: 12px 24px; /* Add padding to wrap around both icon and text */
-      gap: 12px; /* Space between icon and text */
-      position: relative; /* To allow pseudo-elements to be positioned correctly */
-      margin-left: 20px; /* Add left margin for space */
-      margin-right: 20px; /* Add right margin for space */
+      background-color: #F49200; 
+      border-radius: 8px; 
+      padding: 12px 24px; 
+      gap: 12px; 
+      position: relative; 
+      margin-left: 20px;
+      margin-right: 20px;
     `}
 
-  // Create the top and bottom lines with curved ends
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    height: 2px;
-    background-color: #f49200; /* Set color to the same orange */
-    border-radius: 50px; /* Curved ends for the lines */
-    z-index: -1;
-  }
-
   &::before {
-    top: 0; /* Line above the item */
-    left: 20px; /* Add space on the left side of the oval */
-    right: 20px; /* Add space on the right side of the oval */
+    top: 0;
+    left: 20px;
+    right: 20px;
   }
 
   &::after {
-    bottom: 0; /* Line below the item */
-    left: 20px; /* Add space on the left side of the oval */
-    right: 20px; /* Add space on the right side of the oval */
+    bottom: 0;
+    left: 20px;
+    right: 20px;
   }
 
-  // Label color styling when active
   .nav-text {
-    color: ${({ active }) =>
-      active ? "#FFFFFF" : "#757575"}; /* White when active, #757575 when not */
+    color: ${({ $active }) => ($active ? "#FFFFFF" : "#757575")};
   }
 
   @media screen and (max-width: 1400px) {
@@ -125,18 +112,19 @@ export const Divider = styled.div`
   width: 220px;
   height: 2px;
   border-radius: 2px;
-  background-color: #e0e0e0; /* You can adjust the color as needed */
-  margin: 16px 0; /* Add spacing before and after */
+  background-color: #e0e0e0;
+  margin: 16px 0;
 `;
 export const SubMenu = styled.div`
-  padding-left: 16px; /* Reduced indentation for submenu */
+  padding-left: 16px;
+  position: relative;
 
   ${Item} {
     font-size: 13px;
     line-height: 16px;
     font-weight: 550;
     color: #757575;
-    gap: 10px; /* Reduced gap */
+    gap: 10px;
   }
 `;
 const StyleButton = styled.div`
@@ -148,7 +136,6 @@ const LOGO_HEIGHT = 80;
 export const Sidebar = ({ handleOpenSidebar, isOpenSidebar, route }) => {
   const { pathname } = useLocation();
 
-  // Handle route change for submenus only
   useEffect(() => {
     if (!pathname || !route) return;
     function extractFirstPart(path) {
@@ -161,7 +148,6 @@ export const Sidebar = ({ handleOpenSidebar, isOpenSidebar, route }) => {
   }, [pathname, route]);
 
   const handleRoute = (path, hasSubMenu) => {
-    // Prevent routing if the item has a submenu
     if (hasSubMenu) return;
 
     history.push(`/${path}`);
@@ -171,7 +157,6 @@ export const Sidebar = ({ handleOpenSidebar, isOpenSidebar, route }) => {
     history.push(`/${path}`);
   };
 
-  // Show all items (no filtering)
   const getFiltered = (item) => {
     return !item.hidden && !item.isSideBarHidden;
   };
@@ -212,13 +197,12 @@ export const Sidebar = ({ handleOpenSidebar, isOpenSidebar, route }) => {
                   pages={item.pages}
                   activePath={pathname}
                   onSubmenuClick={handleSubmenuRoute}
-                  icon={item.icon} // Pass the icon to Accordion
-                  // New function for submenu item click
+                  icon={item.icon}
                 />
               ) : (
                 <Item
-                  active={active}
-                  onClick={() => handleRoute(item.path, hasSubMenu)} // Main item routing
+                  $active={active}
+                  onClick={() => handleRoute(item.path, hasSubMenu)}
                   path={item.path}
                   data-tooltip-id={`tooltip-${item.path}`}
                 >
@@ -254,6 +238,9 @@ Sidebar.propTypes = {
 };
 
 Item.propTypes = {
-  active: PropTypes.bool,
+  $active: PropTypes.bool,
   path: PropTypes.string,
+};
+Item.defaultProps = {
+  $active: false,
 };

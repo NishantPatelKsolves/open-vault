@@ -12,7 +12,7 @@ export const Logo = ({
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     // eslint-disable-next-line react/no-unknown-property
-    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlnsXlink="http://www.w3.org/1999/xlink"
   >
     <rect width="176" height="47" fill="url(#pattern0_4292_82)" />
     <defs>
