@@ -38,7 +38,7 @@ const ErrorMessage = styled.p`
   font-size: 0.875rem;
   margin-top: 0.25rem;
 `;
-const PasswordField = ({
+export const PasswordField = ({
   name,
   //   type = "password",
   placeholder,

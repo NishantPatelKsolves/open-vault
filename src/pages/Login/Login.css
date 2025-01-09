@@ -1,0 +1,62 @@
+.color-1A1A1A {
+    color: #1A1A1A;
+}
+
+.color-333333 {
+    color: #333333;
+}
+
+.font-24 {
+    font-size: 24px;
+}
+
+.font-18 {
+    font-size: 18px;
+}
+
+.font-14 {
+    font-size: 14px;
+}
+
+.form-field {
+    border: 0.62px solid #E5E5E5;
+    background: #F6F6F6;
+    border-radius: 8px;
+    padding: 16px;
+    width: 100%;
+    color: #808080;
+}
+
+.submit-btn {
+    background-color: #F49200;
+    border-radius: 8px;
+    padding: 12px;
+    font-weight: 700;
+    color: #fff;
+    font-size: 18px;
+}
+
+.color-007AFF {
+    color: #007AFF;   
+}
+
+.form-check-toggle {
+    background-color: #F2F2F2;
+    border: 0.62px solid #E5E5E5;
+    height: 25px;
+    width: 50px !important;
+}
+
+.fw-400 {
+    font-weight: 400;
+}
+
+@media screen and (max-width: 568px) {
+    .login-parent {
+        flex-wrap: wrap;
+    }
+
+    .login-sider {
+        display: none;
+    }
+}

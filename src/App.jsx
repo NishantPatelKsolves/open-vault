@@ -1,6 +1,6 @@
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Login from "./pages/Login";
+import Routes from "./routes";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         pauseOnHover
         draggable
       />
-      <Login />
+      <Routes />
     </>
   );
 }
