@@ -4,10 +4,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 // import { FaEye, FaEyeSlash } from "react-icons/fa"; // Icon imports
 import { toast } from "react-toastify";
-import InputField from "../components/shared/formFields/InputField";
-import PasswordField from "../components/shared/formFields/PasswordField";
+import InputField from "../../components/shared/formFields/InputField";
+import PasswordField from "../../components/shared/formFields/PasswordField";
 
-import UserLoginSchema from "../utils/UserLoginSchema";
+import UserLoginSchema from "../../utils/UserLoginSchema";
+import { history } from "../../helper/history";
 
 const Container = styled.div`
   display: flex;
@@ -108,7 +109,7 @@ const SubmitButton = styled.button`
   border-radius: 0.5rem;
 `;
 
-const Login = () => {
+export const Login = () => {
   const {
     register,
     handleSubmit,
@@ -128,6 +129,7 @@ const Login = () => {
       email: "",
       password: "",
     });
+    history.push("/dashboard");
   };
 
   return (

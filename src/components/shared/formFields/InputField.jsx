@@ -17,7 +17,7 @@ const Input = styled.input`
   border-radius: 0.5rem;
   color: #808080;
 `;
-const InputField = ({
+export const InputField = ({
   name,
   type,
   placeholder,
