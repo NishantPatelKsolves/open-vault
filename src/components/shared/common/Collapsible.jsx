@@ -26,9 +26,8 @@ const Header = styled.div`
 `;
 
 const Title = styled.h3`
-  font-family: Noto Sans;
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 27.24px;
   text-align: left;
   text-underline-position: from-font;

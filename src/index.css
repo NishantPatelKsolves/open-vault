@@ -83,6 +83,7 @@ body {
   text-rendering: optimizeLegibility;
   text-rendering: geometricPrecision;
   font-smooth: always;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 /* scrollar height and width */
