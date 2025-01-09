@@ -19,7 +19,7 @@ import {
 } from "../assets";
 import {
   Dashboard,
-  Services,
+  Reports,
   CustomerInfo,
   Licence,
   SendGrid,
@@ -45,28 +45,30 @@ export const ROUTES_MENU = [
   },
   {
     name: "Services",
-    path: "Services",
     icon: ServicesIcon,
     pages: [
       {
-        path: "",
-        component: <Services />,
-      },
-    ],
-  },
-  {
-    name: "Reports",
-    icon: ReportsIcon,
-    pages: [
-      {
+        name: "GeoCoding",
         path: "GeoCoding",
         component: <GeoCoding />,
         icon: GeocodingIcon,
       },
       {
+        name: "FBC Master",
         path: "FBCMaster",
         component: <FBCMaster />,
         icon: FbcMasterIcon,
+      },
+    ],
+  },
+  {
+    name: "Reports",
+    path: "Reports",
+    icon: ReportsIcon,
+    pages: [
+      {
+        path: "",
+        component: <Reports />,
       },
     ],
   },
@@ -76,31 +78,37 @@ export const ROUTES_MENU = [
     icon: SetupIcon,
     pages: [
       {
-        path: "CustomerInfo",
-        component: <CustomerInfo />,
-        icon: CustomerInfoIcon,
-      },
-      {
+        name: "Licence Management",
         path: "Licence",
         component: <Licence />,
         icon: LicenseIcon,
       },
       {
-        path: "SendGrid",
-        component: <SendGrid />,
-        icon: SendGridIcon,
-      },
-      {
+        name: "Server Groups",
         path: "ServerGroups",
         component: <ServerGroups />,
         icon: ServerGroupsIcon,
       },
       {
+        name: "Server Info",
         path: "ServerInfo",
         component: <ServerInfo />,
         icon: ServerInfoIcon,
       },
       {
+        name: "Send Grid",
+        path: "SendGrid",
+        component: <SendGrid />,
+        icon: SendGridIcon,
+      },
+      {
+        name: "Customer Info",
+        path: "CustomerInfo",
+        component: <CustomerInfo />,
+        icon: CustomerInfoIcon,
+      },
+      {
+        name: "User Settings",
         path: "UserSettings",
         component: <UserSettings />,
         icon: UserSettingsIcon,

@@ -39,10 +39,9 @@ const Accordion = ({
     <AccordionContainer>
       <AccordionItem onClick={toggleAccordion}>
         <Item
-          active={activePath.startsWith(path)}
+          $active={activePath.startsWith(path)}
           onClick={() => onClick(path)}
         >
-          {/* Render the icon here */}
           {icon && (
             <span className="icon-wrapper">{React.createElement(icon)}</span>
           )}
@@ -56,23 +55,21 @@ const Accordion = ({
             {pages.map((page) => (
               <Item
                 key={page.path}
-                active={activePath.startsWith(`/${page.path}`)}
+                $active={activePath.startsWith(`/${page.path}`)}
                 onClick={() => onSubmenuClick(page.path)}
               >
-                {/* Render the icon in submenu items */}
                 {page.icon ? (
                   <span className="icon-wrapper">
                     {React.createElement(page.icon)}
                   </span>
                 ) : (
-                  // Fallback to the parent's icon if the submenu item does not have its own icon
                   icon && (
                     <span className="icon-wrapper">
                       {React.createElement(icon)}
                     </span>
                   )
                 )}
-                <span className="nav-text">{page.path}</span>
+                <span className="nav-text">{page.name}</span>
               </Item>
             ))}
           </SubMenu>
@@ -89,7 +86,7 @@ Accordion.propTypes = {
   activePath: PropTypes.string.isRequired,
   onClick: PropTypes.func,
   onSubmenuClick: PropTypes.func.isRequired,
-  icon: PropTypes.elementType, // Correct prop type for an icon component
+  icon: PropTypes.elementType,
 };
 
 export default Accordion;

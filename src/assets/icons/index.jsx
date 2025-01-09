@@ -17,3 +17,6 @@ export * from "./OpenEye";
 export * from "./SlashEye";
 export * from "./CircleUpArrowIcon";
 export * from "./CircleDownArrowIcon";
+export * from "./HelpIcon";
+export * from "./LogoutIcon";
+export * from "./UserIcon";
