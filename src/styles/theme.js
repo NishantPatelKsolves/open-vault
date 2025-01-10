@@ -46,6 +46,9 @@ export const theme = {
     caution: "#CF9F5D",
     border: "#CCC",
     shadow: "#00000033",
+
+    //table
+    borderGrey: "#E4E4E4",
   },
   spacing: {
     xs: "8px",
