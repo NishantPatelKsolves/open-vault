@@ -1,7 +1,6 @@
 import { useState } from "react";
-import {
-  Collapsible,  CustomTable,
-} from "../../components/shared/common/";
+import styled from "styled-components";
+import { Collapsible, CustomTable } from "../../components/shared/common/";
 
 const collapsibleDemoData = [
   {
@@ -13,6 +12,9 @@ const collapsibleDemoData = [
     content: "This is the content for Collapsible 2",
   },
 ];
+const Wrapper = styled.div`
+  padding: 24px;
+`;
 
 export const Dashboard = () => {
   const [openIndex, setOpenIndex] = useState(null);
@@ -24,7 +26,7 @@ export const Dashboard = () => {
   // console.log("Dashboard Rendered");
 
   return (
-    <div>
+    <Wrapper>
       <h2>Dashboard</h2>
       {collapsibleDemoData.map((d, index) => {
         return (
@@ -39,6 +41,6 @@ export const Dashboard = () => {
           </Collapsible>
         );
       })}
-    </div>
+    </Wrapper>
   );
 };

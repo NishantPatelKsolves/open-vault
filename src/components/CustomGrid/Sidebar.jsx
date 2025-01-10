@@ -7,6 +7,7 @@ import { history } from "../../helper/history";
 import { ROUTES_MENU } from "../../routes";
 import { Logo } from "../../assets";
 import Accordion from "./Accordion";
+
 export const Container = styled.div`
   height: 100%;
   padding: 16px 0;
@@ -20,36 +21,6 @@ export const Container = styled.div`
   border-right: 1px solid #d6cfcf;
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;
-
-  .logo-small {
-    display: none;
-  }
-
-  .btn-hamburger {
-    background: #fff !important;
-    border: 1px solid #e9e0e0;
-    width: 30px;
-    height: 30px;
-    padding: 0px;
-    margin-top: 5px;
-    &:hover {
-      background: #fff !important;
-    }
-  }
-  @media (max-width: 992px) {
-    position: fixed;
-    transition: 0.3s;
-    z-index: 99;
-    left: -281px;
-    &.menuOpen {
-      left: 0px;
-    }
-    button {
-      display: block;
-      position: absolute;
-      margin-left: calc(100% + 55px);
-    }
-  }
 `;
 
 export const List = styled.ul`
@@ -68,13 +39,10 @@ export const Item = styled.li`
   font-size: 16px;
   font-weight: 550;
   color: ${({ $active }) => ($active ? "#FFFFFF" : "#444445")};
-  background-color: ${({ $active }) =>
-    $active ? "transparent" : "transparent"};
+  background-color: ${({ $active }) => ($active ? "#F49200" : "transparent")};
   cursor: pointer;
   gap: 20px;
   border-radius: 8px;
-
-  // Create the oval when active
   ${({ $active }) =>
     $active &&
     `
@@ -87,24 +55,8 @@ export const Item = styled.li`
       margin-right: 20px;
     `}
 
-  &::before {
-    top: 0;
-    left: 20px;
-    right: 20px;
-  }
-
-  &::after {
-    bottom: 0;
-    left: 20px;
-    right: 20px;
-  }
-
   .nav-text {
     color: ${({ $active }) => ($active ? "#FFFFFF" : "#757575")};
-  }
-
-  @media screen and (max-width: 1400px) {
-    font-size: 14px !important;
   }
 `;
 
@@ -115,6 +67,7 @@ export const Divider = styled.div`
   background-color: #e0e0e0;
   margin: 16px 0;
 `;
+
 export const SubMenu = styled.div`
   padding-left: 16px;
   position: relative;
@@ -127,13 +80,14 @@ export const SubMenu = styled.div`
     gap: 10px;
   }
 `;
+
 const StyleButton = styled.div`
   cursor: pointer;
 `;
 
 const LOGO_HEIGHT = 80;
 
-export const Sidebar = ({ handleOpenSidebar, isOpenSidebar, route }) => {
+export const Sidebar = ({ route }) => {
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -174,13 +128,7 @@ export const Sidebar = ({ handleOpenSidebar, isOpenSidebar, route }) => {
   };
 
   return (
-    <Container className={`${isOpenSidebar ? "menuOpen" : ""}`}>
-      <button
-        className="btn btn-hamburger d-lg-none"
-        onClick={() => handleOpenSidebar()}
-      >
-        <img alt="menu" src="/img/Frame.png" />
-      </button>
+    <Container>
       {getImage()}
       <Divider />
       <List className="sidebar-navigation">
@@ -210,17 +158,15 @@ export const Sidebar = ({ handleOpenSidebar, isOpenSidebar, route }) => {
                   <span className="nav-text">{item.name}</span>
                 </Item>
               )}
-              {isOpenSidebar && (
-                <ReactTooltip
-                  id={`tooltip-${item.path}`}
-                  place="right"
-                  content={item.name}
-                  style={{
-                    whiteSpace: "normal",
-                    zIndex: 9999,
-                  }}
-                />
-              )}
+              <ReactTooltip
+                id={`tooltip-${item.path}`}
+                place="right"
+                content={item.name}
+                style={{
+                  whiteSpace: "normal",
+                  zIndex: 9999,
+                }}
+              />
             </div>
           );
         })}
@@ -231,16 +177,13 @@ export const Sidebar = ({ handleOpenSidebar, isOpenSidebar, route }) => {
 
 Sidebar.propTypes = {
   route: PropTypes.string,
-  handleRoute: PropTypes.func,
-  handleOpenSidebar: PropTypes.func,
-  isOpenSidebar: PropTypes.bool,
-  loading: PropTypes.bool,
 };
 
 Item.propTypes = {
   $active: PropTypes.bool,
   path: PropTypes.string,
 };
+
 Item.defaultProps = {
   $active: false,
 };

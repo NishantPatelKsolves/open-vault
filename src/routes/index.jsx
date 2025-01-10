@@ -29,6 +29,7 @@ import {
   Login,
   FBCMaster,
   GeoCoding,
+  UserAccount,
 } from "../pages";
 
 export const ROUTES_MENU = [
@@ -122,7 +123,6 @@ const Routes = () => {
     <HistoryRouter>
       <Route path="/" element={<Login />} />
 
-      {/* Private Routes */}
       <Route path="/" element={<AuthGaurd />}>
         {ROUTES_MENU?.filter((item) => !item.hidden)?.map((item) => (
           <Route key={item.path} path={item.path} element={<Outlet />}>
@@ -130,14 +130,14 @@ const Routes = () => {
               Array.isArray(page.path) ? (
                 page.path.map((subPath) => (
                   <Route
-                    key={subPath}
+                    key={`${item.path}-${subPath}`} // Ensure unique key
                     path={subPath}
                     element={page.component}
                   />
                 ))
               ) : (
                 <Route
-                  key={page.path}
+                  key={`${item.path}-${page.path || "index"}`} // Ensure unique key
                   path={page.path}
                   index={!!page.path}
                   element={page.component}
@@ -146,6 +146,7 @@ const Routes = () => {
             )}
           </Route>
         ))}
+        <Route path="UserAccount" element={<UserAccount />} />
       </Route>
     </HistoryRouter>
   );

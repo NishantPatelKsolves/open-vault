@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { DownArrowIcon, LogoutIcon, UserIcon, HelpIcon } from "../../assets";
 import { useLocation } from "react-router-dom";
+import { ROUTE_NAME_MAP } from "../../helper/constants";
+import { history } from "../../helper/history";
 
 const PlaceholderIcon = styled.div`
   width: 36px;
@@ -37,8 +39,8 @@ const ProfileContainer = styled.div`
 const ProfileDetails = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 10px; /* Increased spacing between the circle and name/role */
-  margin-right: 40px; /* Increased spacing between name/role and dropdown icon */
+  margin-left: 10px;
+  margin-right: 40px;
 `;
 
 const Name = styled.span`
@@ -98,11 +100,11 @@ const Option = styled.span`
 const Title = styled.div`
   font-family: "Poppins", sans-serif;
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 550;
   line-height: 28.1px;
   letter-spacing: 1%;
   color: #081c3a;
-  margin-left: 280px; /* Adjust this to move title to the right */
+  margin-left: 280px;
 `;
 
 const ProfileDropdown = () => {
@@ -114,6 +116,7 @@ const ProfileDropdown = () => {
       label: "My Account",
       icon: <UserIcon />,
       onClick: () => {
+        history.push("/UserAccount");
         setShowMenu(false);
       },
     },
@@ -173,7 +176,9 @@ const ProfileDropdown = () => {
 export const Header = () => {
   const location = useLocation();
   const route = location.pathname.split("/")[1];
-  const routeName = route.charAt(0).toUpperCase() + route.slice(1);
+
+  const routeName =
+    ROUTE_NAME_MAP[route] || route.replace(/([A-Z])/g, " $1").trim();
 
   return (
     <Container>
