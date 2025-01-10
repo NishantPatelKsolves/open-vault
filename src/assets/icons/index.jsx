@@ -20,3 +20,4 @@ export * from "./CircleDownArrowIcon";
 export * from "./HelpIcon";
 export * from "./LogoutIcon";
 export * from "./UserIcon";
+export * from "./InfoCircleIcon";

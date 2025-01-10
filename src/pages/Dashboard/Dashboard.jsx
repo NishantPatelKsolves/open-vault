@@ -13,7 +13,7 @@ const collapsibleDemoData = [
   },
 ];
 const Wrapper = styled.div`
-  padding: 24px;
+  /* padding: 24px; */
 `;
 
 export const Dashboard = () => {
@@ -37,7 +37,7 @@ export const Dashboard = () => {
             toggleCollapsible={() => handleToggle(index)}
           >
             {/* {d.content} */}
-            <CustomTable />
+            <CustomTable filterColumn="serverName" />
           </Collapsible>
         );
       })}

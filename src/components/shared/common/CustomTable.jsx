@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { CompactTable } from "@table-library/react-table-library/compact";
+import { useTheme } from "@table-library/react-table-library/theme";
+import { getTheme } from "@table-library/react-table-library/baseline";
 import styled from "styled-components";
+import PropTypes from "prop-types";
+import { theme } from "../../../styles";
 
-const data = {
+const DBdata = {
   nodes: [
     {
       id: 1,
@@ -35,7 +39,7 @@ const data = {
   ],
 };
 
-const columns = [
+const DBcolumns = [
   { label: "Sr. No", renderCell: (item) => item.id },
   { label: "Server Name", renderCell: (item) => item.serverName },
   { label: "#CMTSs", renderCell: (item) => item.cmtsCount },
@@ -73,16 +77,11 @@ const ScrollableTableContainer = styled.div`
   width: 100%;
 `;
 
-const StyledTable = styled(CompactTable)`
-  min-width: 1500px;
-`;
-
 const SearchInputContainer = styled.div`
   margin-bottom: 1rem;
 `;
 
 const SearchInput = styled.input`
-  /* padding: 8px; */
   font-size: 1rem;
   width: 100%;
   max-width: 300px;
@@ -93,37 +92,80 @@ const SearchInput = styled.input`
   border-radius: 4px;
 `;
 
-export const CustomTable = () => {
+export const CustomTable = ({
+  data = DBdata,
+  columns = DBcolumns,
+  filterColumn,
+}) => {
   const [search, setSearch] = useState("");
+
   const filteredData = {
-    nodes: data.nodes.filter((node) =>
-      node.serverName.toLowerCase().includes(search.toLowerCase())
-    ),
+    nodes: filterColumn
+      ? data?.nodes?.filter((node) =>
+          node[filterColumn]
+            ?.toString()
+            ?.toLowerCase()
+            ?.includes(search.toLowerCase())
+        )
+      : data.nodes,
   };
+
+  const tableTheme = useTheme([
+    getTheme(),
+    {
+      Table: `
+      --data-table-library_grid-template-columns: ${columns
+        .map((column) => column.width || "auto")
+        .join(" ")} !important;
+        margin-bottom: 0;
+
+        th, td {
+          border-bottom: none !important;
+        }
+        th {
+          height: 48px;
+          background-color: ${theme.colors.lightGrey} !important;
+          color:  ${theme.colors.darker} !important;
+        }
+
+        td {
+          height: 60px;
+        }
+
+        tbody tr:nth-of-type(even) td {
+          background-color: ${theme.colors.lightGrey} !important;
+        }
+      `,
+    },
+  ]);
+
   return (
     <>
-      <SearchInputContainer>
-        <label htmlFor="search">Search Server Name:&nbsp;&nbsp; </label>
-        <SearchInput
-          id="search"
-          type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-      </SearchInputContainer>
+      {filterColumn && (
+        <SearchInputContainer>
+          <label htmlFor="search">Search by {filterColumn}:&nbsp;&nbsp;</label>
+          <SearchInput
+            id="search"
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </SearchInputContainer>
+      )}
       <ScrollableTableContainer>
-        {/* <CompactTable
-        data={data}
-        columns={columns}
-        layout={{ horizontalScroll: true }}
-        /> */}
-        <StyledTable
-          // data={data}
+        <CompactTable
           data={filteredData}
           columns={columns}
           layout={{ horizontalScroll: true }}
+          theme={tableTheme}
         />
       </ScrollableTableContainer>
     </>
   );
+};
+
+CustomTable.propTypes = {
+  data: PropTypes.object,
+  columns: PropTypes.array,
+  filterColumn: PropTypes.string,
 };

@@ -155,7 +155,7 @@ Button.propTypes = {
   type: PropTypes.string,
   size: PropTypes.oneOf(["md", "sm", "lg"]),
   iconPosition: PropTypes.oneOf(["left", "right"]),
-  variant: PropTypes.oneOf(["primary", "secondary", "tertiary"]), // Added 'tertiary'
+  variant: PropTypes.oneOf(["primary", "secondary", "tertiary"]),
   loading: PropTypes.bool,
   disabled: PropTypes.bool,
   style: PropTypes.object,

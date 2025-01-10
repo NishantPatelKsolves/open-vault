@@ -6,7 +6,7 @@ const CollapsibleWrapper = styled.div`
   width: 100%;
   border-radius: 8px;
   overflow: hidden;
-  margin: 10px 0;
+  margin: 18px 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
@@ -17,7 +17,7 @@ const Header = styled.div`
   align-items: center;
   padding: 10px 16px;
   background: rgba(255, 255, 255, 1);
-  height: 72px;
+  height: 60px;
   top: 273px;
   left: 290px;
   gap: 0px;
@@ -53,7 +53,7 @@ const Content = styled.div`
   gap: 0px;
   border-radius: 0px 0px 10px 10px;
   opacity: 0px;
-  background: rgba(224, 241, 241, 1);
+  background: rgba(255, 255, 255, 1);
 
   padding: 10px;
   animation: fadeIn 0.3s ease;
