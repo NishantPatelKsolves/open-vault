@@ -14,6 +14,9 @@ const AccordionItem = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  svg {
+    margin-right: 10px;
+  }
 `;
 
 const AccordionContent = styled.div`

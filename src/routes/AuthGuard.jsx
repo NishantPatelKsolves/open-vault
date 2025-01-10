@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 import { Sidebar } from "../components/CustomGrid/Sidebar";
 import Footer from "../components/CustomGrid/Footer";
-import { Header } from "../components/CustomGrid/Header"; // Assuming the Header is imported from its correct location
+import { Header } from "../components/CustomGrid/Header";
 
 const Container = styled.div`
   width: 100%;
@@ -13,13 +13,13 @@ const Container = styled.div`
 `;
 
 const MainContent = styled.div`
-  flex-grow: 1; /* Allow MainContent to take up all available space */
-  display: flex; /* Arrange Sidebar and Content side-by-side */
+  flex-grow: 1;
+  display: flex;
 `;
 
 const SidebarContainer = styled.div`
-  width: 280px; /* Sidebar width */
-  background-color: #ffffff; /* Ensure the sidebar remains white */
+  width: 280px;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   border-right: 1px solid #d6cfcf;
@@ -30,16 +30,11 @@ const SidebarContainer = styled.div`
 `;
 
 const Content = styled.main`
-  flex-grow: 1; /* Fill the remaining horizontal space */
+  flex-grow: 1;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
-`;
-
-const Wrapper = styled.div`
-  flex: 1; /* Take up remaining vertical space within Content */
-  padding: 24px;
-  overflow-y: auto;
+  margin-top: 65px;
 `;
 
 const AuthGuard = () => {
@@ -49,19 +44,13 @@ const AuthGuard = () => {
       <Header />
 
       <MainContent>
-        {/* Sidebar occupies its own space */}
         <SidebarContainer>
           <Sidebar />
         </SidebarContainer>
-        {/* Content occupies the remaining space */}
         <Content>
-          <Wrapper>
-            {/* Outlet renders the routed child components */}
-            <Outlet />
-          </Wrapper>
+          <Outlet />
         </Content>
       </MainContent>
-      {/* Footer spans below content, excluding sidebar */}
       <Footer />
     </Container>
   );
