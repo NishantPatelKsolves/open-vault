@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const FooterContainer = styled.footer`
-  width: calc(100% - 260px); /* Exclude the width of the sidebar */
+  width: calc(100% - 260px);
   height: 54px;
   background-color: #171717;
   display: flex;

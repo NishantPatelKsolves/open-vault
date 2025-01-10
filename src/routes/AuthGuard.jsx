@@ -15,6 +15,8 @@ const Container = styled.div`
 const MainContent = styled.div`
   flex-grow: 1;
   display: flex;
+  overflow-y: auto;
+  scroll-behavior: smooth;
 `;
 
 const SidebarContainer = styled.div`
@@ -31,10 +33,13 @@ const SidebarContainer = styled.div`
 
 const Content = styled.main`
   flex-grow: 1;
-  background-color: #ffffff;
+  background-color: #f6f6f6;
   display: flex;
   flex-direction: column;
   margin-top: 65px;
+  padding: 24px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
 `;
 
 const AuthGuard = () => {

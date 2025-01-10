@@ -130,14 +130,14 @@ const Routes = () => {
               Array.isArray(page.path) ? (
                 page.path.map((subPath) => (
                   <Route
-                    key={`${item.path}-${subPath}`} // Ensure unique key
+                    key={`${item.path}-${subPath}`}
                     path={subPath}
                     element={page.component}
                   />
                 ))
               ) : (
                 <Route
-                  key={`${item.path}-${page.path || "index"}`} // Ensure unique key
+                  key={`${item.path}-${page.path || "index"}`}
                   path={page.path}
                   index={!!page.path}
                   element={page.component}
