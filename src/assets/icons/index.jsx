@@ -21,3 +21,6 @@ export * from "./HelpIcon";
 export * from "./LogoutIcon";
 export * from "./UserIcon";
 export * from "./InfoCircleIcon";
+export * from "./SearchIcon";
+export * from "./CaretRight";
+export * from "./CaretLeft";

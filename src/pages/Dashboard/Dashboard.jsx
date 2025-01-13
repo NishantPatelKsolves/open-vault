@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { Collapsible, CustomTable } from "../../components/shared/common/";
+import { SearchIcon } from "../../assets/icons";
 
 const collapsibleDemoData = [
   {
@@ -37,7 +38,10 @@ export const Dashboard = () => {
             toggleCollapsible={() => handleToggle(index)}
           >
             {/* {d.content} */}
-            <CustomTable filterColumn="serverName" />
+            <CustomTable
+              filterColumn="serverName"
+              searchIcon={<SearchIcon />}
+            />
           </Collapsible>
         );
       })}

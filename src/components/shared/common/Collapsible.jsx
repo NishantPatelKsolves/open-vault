@@ -15,7 +15,7 @@ const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 16px;
+  padding: 20px 16px;
   background: rgba(255, 255, 255, 1);
   height: 60px;
   top: 273px;
@@ -35,7 +35,7 @@ const Title = styled.h3`
   color: #444;
 `;
 
-const ToggleButton = styled.button`
+const ToggleButton = styled.div`
   background: none;
   border: none;
   font-size: 18px;
@@ -55,7 +55,7 @@ const Content = styled.div`
   opacity: 0px;
   background: rgba(255, 255, 255, 1);
 
-  padding: 10px;
+  padding: 0 20px 20px 20px;
   animation: fadeIn 0.3s ease;
 
   @keyframes fadeIn {
