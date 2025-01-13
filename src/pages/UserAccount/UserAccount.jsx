@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import Button from "../../components/shared/common/Button";
-import UserLoginSchema from "../../utils/UserLoginSchema";
+import validationSchema from "../../utils/ValidationSchema";
 import { InputField } from "../../components/shared/formFields/";
 
 const InnerContainer = styled.div`
@@ -17,8 +17,7 @@ const InnerContainer = styled.div`
   border-radius: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   position: relative;
-  min-height: 75vh;
-  display: flex;
+  min-height: 78vh;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
@@ -48,8 +47,6 @@ const InputRow = styled.div`
   justify-content: space-between;
   gap: 20px;
   width: 100%;
-  overflow-x: auto;
-  scroll-behavior: smooth;
 
   @media (max-width: 760px) {
     flex-direction: column;
@@ -57,6 +54,12 @@ const InputRow = styled.div`
     width: 100%;
   }
 `;
+
+const InputContainer = styled.div`
+  width: 95%;
+  position: relative;
+`;
+
 const ResetPasswordLink = styled.span`
   color: #007aff;
   font-family: "Poppins", sans-serif;
@@ -81,8 +84,13 @@ const ButtonWrapper = styled.div`
     justify-content: space-between;
     margin-top: 30px;
     position: relative;
-    left: 135px;
+    left: 170px;
     bottom: 0px;
+  }
+  button {
+    &:hover {
+      background-color: transparent;
+    }
   }
 `;
 
@@ -93,7 +101,7 @@ export const UserAccount = () => {
     reset,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(UserLoginSchema),
+    resolver: yupResolver(validationSchema),
   });
 
   const onSubmit = (data) => {
@@ -106,7 +114,7 @@ export const UserAccount = () => {
     <InnerContainer>
       <ResponsiveForm onSubmit={handleSubmit(onSubmit)}>
         <InputRow>
-          <div className="col-md-6">
+          <InputContainer>
             <InputField
               label="First Name *"
               type="text"
@@ -115,8 +123,8 @@ export const UserAccount = () => {
               register={register}
               errors={errors}
             />
-          </div>
-          <div className="col-md-6">
+          </InputContainer>
+          <InputContainer>
             <InputField
               label="Last Name *"
               type="text"
@@ -125,11 +133,11 @@ export const UserAccount = () => {
               register={register}
               errors={errors}
             />
-          </div>
+          </InputContainer>
         </InputRow>
 
         <InputRow>
-          <div className="col-md-6">
+          <InputContainer>
             <InputField
               label="Email Address *"
               type="email"
@@ -137,10 +145,9 @@ export const UserAccount = () => {
               placeholder="Email Address"
               register={register}
               errors={errors}
-              style={{ flex: 1 }}
             />
-          </div>
-          <div className="col-md-6">
+          </InputContainer>
+          <InputContainer>
             <InputField
               label="Designation"
               type="text"
@@ -148,13 +155,12 @@ export const UserAccount = () => {
               placeholder="Designation"
               register={register}
               errors={errors}
-              style={{ flex: 1 }}
             />
-          </div>
+          </InputContainer>
         </InputRow>
 
         <InputRow>
-          <div className="col-md-6">
+          <InputContainer>
             <InputField
               label="Contact Number *"
               type="text"
@@ -162,10 +168,9 @@ export const UserAccount = () => {
               placeholder="Contact Number"
               register={register}
               errors={errors}
-              style={{ flex: 1 }}
             />
-          </div>
-          <div className="col-md-6">
+          </InputContainer>
+          <InputContainer>
             <InputField
               label="City"
               type="text"
@@ -173,13 +178,12 @@ export const UserAccount = () => {
               placeholder="City"
               register={register}
               errors={errors}
-              style={{ flex: 1 }}
             />
-          </div>
+          </InputContainer>
         </InputRow>
 
         <InputRow>
-          <div className="col-md-6">
+          <InputContainer>
             <InputField
               label="State"
               type="text"
@@ -187,10 +191,9 @@ export const UserAccount = () => {
               placeholder="State"
               register={register}
               errors={errors}
-              style={{ flex: 1 }}
             />
-          </div>
-          <div className="col-md-6">
+          </InputContainer>
+          <InputContainer>
             <InputField
               label="Password"
               type="password"
@@ -198,9 +201,8 @@ export const UserAccount = () => {
               placeholder="Password"
               register={register}
               errors={errors}
-              style={{ flex: 1 }}
             />
-          </div>
+          </InputContainer>
         </InputRow>
         <ResetPasswordLink>Reset Password</ResetPasswordLink>
         <ButtonWrapper>
