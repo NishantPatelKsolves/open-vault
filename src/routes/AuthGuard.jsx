@@ -43,7 +43,7 @@ const Content = styled.main`
 `;
 
 const AuthGuard = () => {
-  console.log(window.location.pathname);
+  // console.log(window.location.pathname);
   return (
     <Container>
       <Header />
