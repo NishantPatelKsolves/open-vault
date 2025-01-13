@@ -124,8 +124,8 @@ const Routes = () => {
       <Route path="/" element={<Login />} />
 
       <Route path="/" element={<AuthGaurd />}>
-        {ROUTES_MENU?.filter((item) => !item.hidden)?.map((item) => (
-          <Route key={item.path} path={item.path} element={<Outlet />}>
+        {ROUTES_MENU?.filter((item) => !item.hidden)?.map((item, i) => (
+          <Route key={i} path={item.path} element={<Outlet />}>
             {item.pages.map((page) =>
               Array.isArray(page.path) ? (
                 page.path.map((subPath) => (

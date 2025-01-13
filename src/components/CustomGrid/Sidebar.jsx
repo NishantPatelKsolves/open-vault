@@ -132,12 +132,12 @@ export const Sidebar = ({ route }) => {
       {getImage()}
       <Divider />
       <List className="sidebar-navigation">
-        {ROUTES_MENU.filter(getFiltered).map((item) => {
+        {ROUTES_MENU.filter(getFiltered).map((item, i) => {
           const active = pathname.startsWith(`/${item.path}`);
           const hasSubMenu = item.pages && item.pages.length > 1;
 
           return (
-            <div key={item.path}>
+            <div key={i}>
               {hasSubMenu ? (
                 <Accordion
                   name={item.name}

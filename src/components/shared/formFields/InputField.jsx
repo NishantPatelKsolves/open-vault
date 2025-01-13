@@ -17,6 +17,15 @@ const Input = styled.input`
   border-radius: 0.5rem;
   color: #808080;
 `;
+
+const ErrorMessage = styled.div`
+  height: 15px;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: red;
+  padding-left: 10px;
+`;
+
 export const InputField = ({
   name,
   type,
@@ -48,7 +57,7 @@ export const InputField = ({
         onChange={onChange}
         onKeyDown={handleKeyDown}
       />
-      {errors[name] && <p style={{ color: "red" }}>{errors[name].message}</p>}
+      <ErrorMessage>{errors[name]?.message}</ErrorMessage>
     </>
   );
 };
