@@ -23,15 +23,7 @@ const AccordionContent = styled.div`
   padding-left: 20px;
 `;
 
-const Accordion = ({
-  name,
-  path,
-  pages,
-  activePath,
-  onClick,
-  onSubmenuClick,
-  icon,
-}) => {
+const Accordion = ({ name, path, pages, activePath, onSubmenuClick, icon }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleAccordion = () => {
@@ -41,10 +33,7 @@ const Accordion = ({
   return (
     <AccordionContainer>
       <AccordionItem onClick={toggleAccordion}>
-        <Item
-          $active={activePath.startsWith(path)}
-          onClick={() => onClick(path)}
-        >
+        <Item $active={activePath.startsWith(path)}>
           {icon && (
             <span className="icon-wrapper">{React.createElement(icon)}</span>
           )}
@@ -87,7 +76,6 @@ Accordion.propTypes = {
   path: PropTypes.string,
   pages: PropTypes.array.isRequired,
   activePath: PropTypes.string.isRequired,
-  onClick: PropTypes.func,
   onSubmenuClick: PropTypes.func.isRequired,
   icon: PropTypes.elementType,
 };

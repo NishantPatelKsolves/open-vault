@@ -55,19 +55,24 @@ const StyledButton = styled.button.withConfig({
   transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 
   &:hover {
-    color: ${(props) =>
-      props.variant === "tertiary"
-        ? "props.theme.colors.darker"
-        : props.theme.colors.white};
-    background: ${(props) =>
-      props.variant === "primary"
-        ? props.theme.colors.primaryActive
-        : props.variant === "secondary"
-        ? props.theme.colors.darker
-        : "#DDE4F0"};
-    path {
-      fill: ${(props) => props.theme.colors.white};
-    }
+    ${(props) =>
+      props.variant === "primary" || props.variant === "secondary"
+        ? `
+          background-color: ${props.backgroundColor}; /* Retain the original background color */
+          color: ${props.color}; /* Retain the original color */
+        `
+        : `
+          color: ${(props) =>
+            props.variant === "tertiary"
+              ? "props.theme.colors.darker"
+              : props.theme.colors.white};
+          background: ${(props) =>
+            props.variant === "primary"
+              ? props.theme.colors.primaryActive
+              : props.variant === "secondary"
+              ? props.theme.colors.darker
+              : "#DDE4F0"};
+        `}
   }
 
   &:disabled {

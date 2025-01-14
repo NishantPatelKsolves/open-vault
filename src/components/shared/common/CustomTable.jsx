@@ -326,8 +326,12 @@ const DBcolumns = [
 ];
 
 const ScrollableTableContainer = styled.div`
+  max-height: 500px;
+  overflow-y: auto;
   overflow-x: auto;
-  width: 100%;
+  border: 1px solid #e4e4e4;
+  border-radius: 0.45rem;
+  position: relative;
 `;
 
 const SearchInputContainer = styled.div`
@@ -381,6 +385,7 @@ export const CustomTable = ({
   placeholder = "Search...",
   searchIcon = null,
   showPagination = true,
+  onChange,
 }) => {
   const [search, setSearch] = useState("");
 
@@ -512,7 +517,11 @@ export const CustomTable = ({
       <ScrollableTableContainer>
         <CompactTable
           data={filteredData}
-          columns={columns}
+          columns={columns.map((column) => ({
+            ...column,
+            renderCell: (item) =>
+              column.renderCell ? column.renderCell(item, onChange) : null,
+          }))}
           layout={{ horizontalScroll: false, verticalScroll: true }}
           theme={tableTheme}
         />
@@ -540,4 +549,5 @@ CustomTable.propTypes = {
   searchIcon: PropTypes.node,
   showPagination: PropTypes.bool,
   rowsPerPage: PropTypes.number,
+  onChange: PropTypes.func,
 };
