@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { ImportantNotice, CustomTable } from "../../components/shared/common/";
 import Button from "../../components/shared/common/Button";
+import { useState } from "react";
+import AddGeoCreditsModal from "./AddGeoCreditsModal";
+import { toast } from "react-toastify";
 
 const Container = styled.div`
   /* margin-top: 5rem; */
@@ -54,6 +57,19 @@ const GCcolumns = [
   { label: "Credits Remaining", renderCell: (item) => item.creditsRemaining },
 ];
 export const GeoCoding = () => {
+  const [isAddGeoCreditsModalOpen, setIsAddGeoCreditsModalOpen] =
+    useState(false);
+
+  const handleGeoCreditsModalClose = () => {
+    setIsAddGeoCreditsModalOpen(false);
+  };
+
+  const handlePasswordSubmit = (data) => {
+    console.log("Password updated:", data);
+    toast.success("Geo Credits added successfully!");
+    setIsAddGeoCreditsModalOpen(false);
+  };
+
   return (
     <Container>
       <p>Breadcrumb &gt; GeoCoding</p>
@@ -65,7 +81,10 @@ export const GeoCoding = () => {
         <Button
           size="sm"
           variant="primary"
-          onClick={() => console.log("Save Details clicked")}
+          onClick={() => {
+            setIsAddGeoCreditsModalOpen(true);
+            console.log("Save Details clicked");
+          }}
           style={{
             width: "8rem",
             height: "2.2rem",
@@ -82,6 +101,12 @@ export const GeoCoding = () => {
       <TableWrapper>
         <CustomTable data={GCdata} columns={GCcolumns} />
       </TableWrapper>
+
+      <AddGeoCreditsModal
+        isOpen={isAddGeoCreditsModalOpen}
+        onRequestClose={handleGeoCreditsModalClose}
+        onSubmit={handlePasswordSubmit}
+      />
     </Container>
   );
 };

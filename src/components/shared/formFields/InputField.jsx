@@ -1,11 +1,16 @@
 import PropTypes from "prop-types";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const InputLabel = styled.label`
   display: block;
   margin-bottom: 0.25rem;
   font-size: 0.875rem;
   color: #333333;
+  ${(props) =>
+    props.labelStyles &&
+    css`
+      ${props.labelStyles}
+    `}
 `;
 
 const Input = styled.input`
@@ -16,6 +21,11 @@ const Input = styled.input`
   background-color: #f6f6f6;
   border-radius: 0.5rem;
   color: #808080;
+  ${(props) =>
+    props.inputStyles &&
+    css`
+      ${props.inputStyles}
+    `}
 `;
 
 const ErrorMessage = styled.div`
@@ -35,6 +45,8 @@ export const InputField = ({
   label,
   onChange,
   onKeyDown,
+  labelStyles,
+  inputStyles,
 }) => {
   // Default onKeyDown behavior
   const handleKeyDown = (e) => {
@@ -49,13 +61,14 @@ export const InputField = ({
 
   return (
     <>
-      <InputLabel>{label}</InputLabel>
+      <InputLabel labelStyles={labelStyles}>{label}</InputLabel>
       <Input
         type={type}
         placeholder={placeholder}
         {...register(name)}
         onChange={onChange}
         onKeyDown={handleKeyDown}
+        inputStyles={inputStyles}
       />
       <ErrorMessage>{errors[name]?.message}</ErrorMessage>
     </>
@@ -71,4 +84,14 @@ InputField.propTypes = {
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   onKeyDown: PropTypes.func,
+  inputStyles: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array,
+    PropTypes.object,
+  ]),
+  labelStyles: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array,
+    PropTypes.object,
+  ]),
 };
