@@ -39,7 +39,7 @@ const Header = styled.div`
 const Body = styled.div`
   flex: 1;
   overflow-y: auto;
-  padding: 26px 18px;
+  padding: 0 26px  18px 26px;
 `;
 
 const Footer = styled.div`
@@ -147,7 +147,7 @@ export const Modal = ({
             <CloseButton icon={<CloseIcon />} onClick={onRequestClose} />
           )}
         </Header>
-        <Body>{children}</Body>
+        <Body className="modal-body">{children}</Body>
         {(primaryButtonText || secondaryButtonText || tertiaryButton) && (
           <Footer
             footerAlign={footerAlign}
