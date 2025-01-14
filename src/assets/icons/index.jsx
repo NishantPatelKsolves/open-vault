@@ -24,3 +24,4 @@ export * from "./InfoCircleIcon";
 export * from "./SearchIcon";
 export * from "./CaretRight";
 export * from "./CaretLeft";
+export * from "./CrossIcons";

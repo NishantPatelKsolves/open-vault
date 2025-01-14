@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import Button from "../../components/shared/common/Button";
 import validationSchema from "../../utils/ValidationSchema";
 import { InputField } from "../../components/shared/formFields/";
+import { useState } from "react";
+import UpdatePasswordModal from "./PasswordModal";
 
 const InnerContainer = styled.div`
   background-color: white;
@@ -70,6 +72,7 @@ const ResetPasswordLink = styled.span`
   text-align: right;
   width: 100%;
   display: block;
+  cursor: pointer;
 `;
 
 const ButtonWrapper = styled.div`
@@ -95,6 +98,8 @@ const ButtonWrapper = styled.div`
 `;
 
 export const UserAccount = () => {
+  const [isPasswordModalOpen, setPasswordModalOpen] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -107,6 +112,18 @@ export const UserAccount = () => {
   const onSubmit = (data) => {
     console.log("Form Data:", data);
     toast.success("Details saved successfully!");
+    reset();
+  };
+
+  const handlePasswordModalClose = () => {
+    console.log("closed");
+    setPasswordModalOpen(false);
+  };
+
+  const handlePasswordSubmit = (data) => {
+    console.log("Password updated:", data);
+    toast.success("Password updated successfully!");
+    setPasswordModalOpen(false);
     reset();
   };
 
@@ -135,7 +152,6 @@ export const UserAccount = () => {
             />
           </InputContainer>
         </InputRow>
-
         <InputRow>
           <InputContainer>
             <InputField
@@ -158,7 +174,6 @@ export const UserAccount = () => {
             />
           </InputContainer>
         </InputRow>
-
         <InputRow>
           <InputContainer>
             <InputField
@@ -181,7 +196,6 @@ export const UserAccount = () => {
             />
           </InputContainer>
         </InputRow>
-
         <InputRow>
           <InputContainer>
             <InputField
@@ -204,7 +218,9 @@ export const UserAccount = () => {
             />
           </InputContainer>
         </InputRow>
-        <ResetPasswordLink>Reset Password</ResetPasswordLink>
+        <ResetPasswordLink onClick={() => setPasswordModalOpen(true)}>
+          Reset Password
+        </ResetPasswordLink>{" "}
         <ButtonWrapper>
           <Button
             size="md"
@@ -244,6 +260,11 @@ export const UserAccount = () => {
           </Button>
         </ButtonWrapper>
       </ResponsiveForm>
+      <UpdatePasswordModal
+        isOpen={isPasswordModalOpen}
+        onRequestClose={handlePasswordModalClose}
+        onSubmit={handlePasswordSubmit}
+      />
     </InnerContainer>
   );
 };
