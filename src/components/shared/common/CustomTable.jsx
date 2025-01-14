@@ -384,16 +384,16 @@ export const CustomTable = ({
 }) => {
   const [search, setSearch] = useState("");
 
-  const filteredData = {
-    nodes: filterColumn
-      ? data?.nodes?.filter((node) =>
-          node[filterColumn]
-            ?.toString()
-            ?.toLowerCase()
-            ?.includes(search.toLowerCase())
-        )
-      : data.nodes,
-  };
+  // let filteredData = {
+  //   nodes: filterColumn
+  //     ? data?.nodes?.filter((node) =>
+  //         node[filterColumn]
+  //           ?.toString()
+  //           ?.toLowerCase()
+  //           ?.includes(search.toLowerCase())
+  //       )
+  //     : data.nodes,
+  // };
 
   const tableTheme = useTheme([
     getTheme(),
@@ -460,9 +460,35 @@ export const CustomTable = ({
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const indexOfLastItem = currentPage * rowsPerPage;
-  const indexOfFirstItem = indexOfLastItem - rowsPerPage;
-  const currentItems = data.nodes.slice(indexOfFirstItem, indexOfLastItem);
+  // const indexOfLastItem = currentPage * rowsPerPage;
+  // const indexOfFirstItem = indexOfLastItem - rowsPerPage;
+  // const currentItems = data.nodes.slice(indexOfFirstItem, indexOfLastItem);
+
+  const pageSize = rowsPerPage;
+  function getPaginatedData(data, currentPage, pageSize) {
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    return data.nodes.slice(startIndex, endIndex);
+  }
+
+  let paginatedNodes = getPaginatedData(data, currentPage, pageSize);
+
+  let filteredData = {
+    nodes: filterColumn
+      ? paginatedNodes.filter((node) =>
+          node[filterColumn]
+            ?.toString()
+            ?.toLowerCase()
+            ?.includes(search.toLowerCase())
+        )
+      : paginatedNodes,
+  };
+
+  // if (showPagination) {
+  //   filteredData = {
+  //     nodes: data.nodes.slice(indexOfFirstItem, indexOfLastItem),
+  //   };
+  // }
 
   useEffect(() => {
     setCurrentPage(1);
@@ -485,7 +511,7 @@ export const CustomTable = ({
       )}
       <ScrollableTableContainer>
         <CompactTable
-          data={showPagination ? { nodes: currentItems } : filteredData}
+          data={filteredData}
           columns={columns}
           layout={{ horizontalScroll: false, verticalScroll: true }}
           theme={tableTheme}

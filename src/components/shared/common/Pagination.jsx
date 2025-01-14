@@ -21,14 +21,12 @@ const StyledButton = styled.button`
   height: 2rem;
   width: 2rem;
   border-radius: 4px;
-  border: ${(props) =>
-    props.active
-      ? `2px solid ${theme.colors.primary}`
-      : `2px solid ${theme.colors.border}`};
+  border: 2px solid
+    ${(props) => (props.$active ? theme.colors.primary : theme.colors.border)};
   background-color: ${(props) =>
-    props.active ? `${theme.colors.primary}` : `transparent`};
+    props.$active ? theme.colors.primary : "transparent"};
   color: ${(props) =>
-    props.active ? theme.colors.lighter : theme.colors.darker};
+    props.$active ? theme.colors.white : theme.colors.darker};
   font-weight: normal;
   font-size: 14px;
   display: flex;
@@ -162,7 +160,7 @@ const Pagination = ({
             onClick={() => handlePageChange(number)}
             size="sm"
             variant="secondary"
-            active={number === page}
+            $active={number === page || false}
           >
             {number}
           </StyledButton>
