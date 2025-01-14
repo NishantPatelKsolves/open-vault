@@ -12,7 +12,7 @@ const InnerContainer = styled.div`
   background-color: white;
   padding: 20px;
   width: 100%;
-  max-width: 1350px;
+  max-width: 1450px;
   height: auto;
   margin-top: 20px;
   margin-bottom: 40px;
@@ -22,7 +22,7 @@ const InnerContainer = styled.div`
   min-height: 78vh;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-self: center;
   overflow-y: auto;
   scroll-behavior: smooth;
 
@@ -89,11 +89,6 @@ const ButtonWrapper = styled.div`
     position: relative;
     left: 170px;
     bottom: 0px;
-  }
-  button {
-    &:hover {
-      background-color: transparent;
-    }
   }
 `;
 
@@ -233,12 +228,7 @@ export const UserAccount = () => {
               fontWeight: "600",
             }}
           >
-            <div
-              className="d-flex"
-              style={{ fontSize: "12px", fontWeight: "600" }}
-            >
-              <span>Cancel</span>
-            </div>
+            Cancel
           </Button>
 
           <Button
@@ -251,12 +241,7 @@ export const UserAccount = () => {
               fontWeight: "600",
             }}
           >
-            <div
-              className="d-flex"
-              style={{ fontSize: "12px", fontWeight: "600" }}
-            >
-              <span>Save Details</span>
-            </div>
+            Save Details
           </Button>
         </ButtonWrapper>
       </ResponsiveForm>
